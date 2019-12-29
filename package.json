@@ -1,0 +1,15 @@
+{
+  "name": "lnzz",
+  "version": "0.1.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "冷暖自知",
+  "license": "ISC",
+  "description": "你对我笑i电商小程序",
+  "dependencies": {
+    "lin-ui": "^0.6.5"
+  },
+  "private": true
+}
