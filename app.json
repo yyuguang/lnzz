@@ -5,13 +5,17 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
+    "navigationBarTitleText": "你对我笑i",
+    "navigationBarTextStyle": "black",
+    "onReachBottomDistance": 50
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "l-price": "/miniprogram_npm/lin-ui/price/index",
     "l-grid": "/miniprogram_npm/lin-ui/grid/index",
-    "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index"
+    "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index",
+    "l-tag": "/miniprogram_npm/lin-ui/tag/index",
+    "l-loadmore": "/miniprogram_npm/lin-ui/loadmore/index",
+    "s-spu-preview": "components/spu-preview/index"
   }
 }

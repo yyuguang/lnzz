@@ -4,6 +4,7 @@ import {Theme} from "../../model/theme";
 import {Banner} from "../../model/banner";
 import {Category} from "../../model/category";
 import {Activity} from "../../model/activity";
+import {SpuPaging} from "../../model/spu-paging";
 
 Page({
 
@@ -15,12 +16,15 @@ Page({
         themeE: null,
         bannerB: null,
         grid: [],
-        activityD: null
+        activityD: null,
+        spuPaging: null,
+        loadingType: 'loading'
     },
 
 
     async onLoad(options) {
-        //this.initAllData()
+        // this.initAllData();
+        // this.initBottomSpuList();
 
         let themeESpu = [];
         const themeE = TestData.locationThemeE.data[0];
@@ -43,9 +47,19 @@ Page({
             themeH: TestData.locationThemeH.data[0]
         });
 
-        console.log(TestData.locationThemeH.data[0])
+        const data = TestData.locationSpuI.data[0];
+        wx.lin.renderWaterFlow(data.items);
     },
 
+    async initBottomSpuList() {
+        const paging = SpuPaging.getLatestPaging();
+        this.data.spuPaging = paging;
+        const data = paging.getMoreData();
+        if (!data) {
+            return;
+        }
+        wx.lin.renderWaterFlow(data.items)
+    },
 
     async initAllData() {
         const theme = new Theme();
@@ -88,8 +102,23 @@ Page({
     },
 
 
-    onReachBottom() {
+    async onReachBottom() {
+        // //加载更多数据
+        // const data = await this.data.spuPaging.getMoreData();
+        // if (!data) {
+        //     return;
+        // }
+        //
+        // wx.lin.renderWaterFlow(data.items);
+        // if (!data.moreData) {
+        //     this.setData({
+        //         loadingType: 'end'
+        //     })
+        // }
 
+        this.setData({
+            loadingType: 'end'
+        })
     },
 
 
