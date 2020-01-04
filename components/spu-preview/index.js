@@ -33,11 +33,26 @@ Component({
      * 组件的方法列表
      */
     methods: {
+        /**
+         * 计算瀑布流图片宽高
+         * @param event
+         */
         onImgLoad(event) {
             const {width, height} = event.detail;
             this.setData({
                 w: 340,
                 h: 340 * height / width
+            })
+        },
+        /**
+         * 获取商品信息ID号
+         * @param event
+         */
+        onItemTap(event) {
+            const pid = event.currentTarget.dataset.pid;
+            wx.navigateTo({
+                // url: `/pages/detail/detail?pid=${pid}`
+                url: `/pages/detail/detail`
             })
         }
     }
