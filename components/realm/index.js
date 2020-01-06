@@ -47,7 +47,6 @@ Component({
             })
         },
         onCellTap(event) {
-            console.log(event)
             const cell = event.detail.cell;
             const x = event.detail.x;
             const y = event.detail.y;
