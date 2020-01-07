@@ -20,8 +20,30 @@ class Judger {
         this._initSkuPending();
     }
 
+    isSkuIntact() {
+        return this.skuPending.isIntact();
+    }
+
     _initSkuPending() {
-        this.skuPending = new SkuPending();
+        const specsLength = this.fenceGroup.fences.length;
+        this.skuPending = new SkuPending(specsLength);
+        const defaultSku = this.fenceGroup.getDefaultSku();
+        if (!defaultSku) {
+            return
+        }
+        this.skuPending.init(defaultSku);
+        this._initSelectedCell();
+        this.judge(null, null, null, true);
+    }
+
+    /**
+     * 初始化已选择Cell
+     * @private
+     */
+    _initSelectedCell() {
+        this.skuPending.pending.forEach(cell => {
+            this.fenceGroup.setCellStatusById(cell.id, CellStatus.SELECTED);
+        });
     }
 
     /**
@@ -34,8 +56,21 @@ class Judger {
         });
     }
 
-    judge(cell, x, y) {
-        this._changeCurrentCellStatus(cell, x, y);
+    getCurrentValues() {
+        return this.skuPending.getCurrentSpecValues();
+    }
+
+    getMissingKeys() {
+        const missingKeysIndex = this.skuPending.getMissingSpecKeysIndex();
+        return missingKeysIndex.map(i => {
+            return this.fenceGroup.fences[i].title;
+        })
+    }
+
+    judge(cell, x, y, isInit = false) {
+        if (!isInit) {
+            this._changeCurrentCellStatus(cell, x, y);
+        }
 
         //改变状态
         this.fenceGroup.eachCell((cell, x, y) => {
@@ -45,22 +80,27 @@ class Judger {
                 return
             }
             if (isIn) {
-                this.fenceGroup.fences[x].cells[y].status = CellStatus.WAITING;
+                this.fenceGroup.setCellStatusByXY(x, y, CellStatus.WAITING);
             } else {
-                this.fenceGroup.fences[x].cells[y].status = CellStatus.FORBIDDEN;
+                this.fenceGroup.setCellStatusByXY(x, y, CellStatus.FORBIDDEN);
             }
         });
     }
 
     _changeCurrentCellStatus(cell, x, y) {
         if (cell.status === CellStatus.WAITING) {
-            this.fenceGroup.fences[x].cells[y].status = CellStatus.SELECTED;
+            this.fenceGroup.setCellStatusByXY(x, y, CellStatus.SELECTED);
             this.skuPending.insertCell(cell, x);
         }
         if (cell.status === CellStatus.SELECTED) {
-            this.fenceGroup.fences[x].cells[y].status = CellStatus.WAITING;
+            this.fenceGroup.setCellStatusByXY(x, y, CellStatus.WAITING);
             this.skuPending.removeCell(x);
         }
+    }
+
+    getDeterminateSku() {
+        const code = this.skuPending.getSkuCode();
+        return this.fenceGroup.getSku(code);
     }
 
     /**

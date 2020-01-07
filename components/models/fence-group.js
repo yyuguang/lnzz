@@ -17,6 +17,46 @@ class FenceGroup {
         this.skuList = spu.sku_list;
     }
 
+    getDefaultSku() {
+        const defaultSkuId = this.spu.default_sku_id;
+        if (!defaultSkuId) {
+            return
+        }
+        return this.skuList.find(s => s.id === defaultSkuId);
+    }
+
+    getSku(skuCode) {
+        const fullSkuCode = this.spu.id + '$' + skuCode;
+        const sku = this.spu.sku_list.find(s => s.code === fullSkuCode);
+        return sku ? sku : null;
+    }
+
+
+    setCellStatusById(cellId, status) {
+        this.eachCell((cell) => {
+            if (cell.id === cellId) {
+                cell.status = status;
+            }
+        })
+    }
+
+    setCellStatusByXY(x, y, status) {
+        this.fences[x].cells[y].status = status;
+    }
+
+
+    initFences() {
+        const matrix = this._createMatrix(this.skuList);
+        const fences = [];
+        const AT = matrix.transpose();
+        AT.forEach(r => {
+            const fence = new Fence(r);
+            fence.init();
+            fences.push(fence);
+        });
+        this.fences = fences;
+    }
+
     /*    initFences1() {
             const matrix = this._createMatrix(this.skuList);
             const fences = [];
@@ -31,18 +71,6 @@ class FenceGroup {
             })
 
         }*/
-
-    initFences() {
-        const matrix = this._createMatrix(this.skuList);
-        const fences = [];
-        const AT = matrix.transpose();
-        AT.forEach(r => {
-            const fence = new Fence(r);
-            fence.init();
-            fences.push(fence);
-        });
-        this.fences = fences;
-    }
 
     eachCell(cb) {
         for (let i = 0; i < this.fences.length; i++) {
