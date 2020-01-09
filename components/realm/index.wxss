@@ -1,9 +1,14 @@
-/* components/realm/index.wxss */
-
 .container {
-    padding: 30rpx;
     box-sizing: border-box;
+    /*padding:30rpx;*/
     background-color: #ffffff;
+    max-height: 1000rpx;
+    min-height: 700rpx;
+    margin-bottom: 100rpx;
+}
+
+.inner-container {
+    padding: 30rpx 30rpx 0 30rpx;
 }
 
 .sku-preview {
@@ -23,11 +28,21 @@
     margin-left: 40rpx;
 }
 
+.discount-price {
+    margin-left: 20rpx;
+}
+
+.price-row {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
 .sku-pending {
     font-size: 20rpx;
 }
 
-.sku-pending > text:first-child{
+.sku-pending> text:first-child{
     color:#999999;
 }
 
@@ -36,18 +51,7 @@
 }
 
 
-.price-row {
-    display: flex;
-    flex-direction: row;
-    align-items: baseline;
-}
-
-
-.discount-price {
-    margin-left: 20rpx;
-}
-
-.hr {
+.hr{
     margin-top: 30rpx;
     width: 690rpx;
     height: 2rpx;
@@ -55,17 +59,16 @@
 }
 
 .stock {
-    margin-left: 30rpx;
+    margin-left:30rpx;
     font-size: 20rpx;
     color: #999;
 }
 
-.stock-pinch {
-    margin-left: 30rpx;
+.stock-pinch{
+    margin-left:30rpx;
     font-size: 20rpx;
     color: #D20109;
 }
-
 
 .counter-container {
     margin-top: 34rpx;
@@ -73,13 +76,30 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 200rpx;
+    padding-bottom: 100rpx;
 }
 
-.counter-container text {
-    color: #555555;
-    font-size: 24rpx;
+.counter-container text{
+    color:#555555;
+    font-size:24rpx;
 }
 
+.bottom-btn{
+    display:flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100rpx;
+    background-color: #333333;
+    position: absolute;
+    bottom: 0;
+}
 
+.out-stock{
+    background-color: #DCEBE6;
+}
 
+.bottom-btn text{
+color: #ffffff;
+}

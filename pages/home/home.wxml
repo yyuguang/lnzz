@@ -1,4 +1,4 @@
-<l-loadmore show end-text="-  Designed by lnzz -" type="{{loadingType}}">
+<l-loadmore show end-text="-  DESIGNED BY LNZZ -" type="{{loadingType}}">
     <view slot="content" class="container">
         <image class="top-theme" src="{{themeA.entrance_img}}"></image>
 

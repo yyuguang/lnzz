@@ -1,5 +1,21 @@
 page {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
+@font-face {
+    font-family: 'lnzz';
+    src: url('//at.alicdn.com/t/font_1603563_sxvnli0uka.eot');
+    src: url('//at.alicdn.com/t/font_1603563_sxvnli0uka.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_1603563_sxvnli0uka.woff2') format('woff2'),
+         url('//at.alicdn.com/t/font_1603563_sxvnli0uka.woff') format('woff'),
+         url('//at.alicdn.com/t/font_1603563_sxvnli0uka.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_1603563_sxvnli0uka.svg#lnzz') format('svg');
+}
 
+.lnzz {
+    font-family: lnzz !important;
+}
+
+.l-icon-home:before {
+    content: "\e611";
+}
