@@ -48,6 +48,7 @@
   "usingComponents": {
     "l-counter": "/miniprogram_npm/lin-ui/counter/index",
     "l-price": "/miniprogram_npm/lin-ui/price/index",
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
     "l-icon": "/miniprogram_npm/lin-ui/icon/index",
     "l-badge": "/miniprogram_npm/lin-ui/badge/index",
     "l-popup": "/miniprogram_npm/lin-ui/popup/index",
