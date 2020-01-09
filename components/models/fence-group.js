@@ -52,6 +52,9 @@ class FenceGroup {
         AT.forEach(r => {
             const fence = new Fence(r);
             fence.init();
+            if (this._hasSketchFence() && this._isSketchFence(fence.id)) {
+                fence.setFenceSketch(this.skuList);
+            }
             fences.push(fence);
         });
         this.fences = fences;
@@ -72,6 +75,19 @@ class FenceGroup {
 
         }*/
 
+    _hasSketchFence() {
+        return this.spu.sketch_spec_id ? true : false;
+    }
+
+    /**
+     * 是否为可视Fence
+     * @param fenceId
+     * @private
+     */
+    _isSketchFence(fenceId) {
+        return this.spu.sketch_spec_id === fenceId;
+    }
+
     eachCell(cb) {
         for (let i = 0; i < this.fences.length; i++) {
             for (let j = 0; j < this.fences[i].cells.length; j++) {
@@ -82,8 +98,7 @@ class FenceGroup {
     }
 
     _createFence(element) {
-        const fence = new Fence();
-        return fence;
+        return new Fence();
     }
 
     _createMatrix(skuList) {
