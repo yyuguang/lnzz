@@ -34,11 +34,11 @@ Page({
             explain,
             h
         });
-        console.log(TestData.locationSaleExplainG)
+        console.log(TestData.locationSaleExplainJ)
     },
 
     _initSaleExplain() {
-        const explains = TestData.locationSaleExplainG;
+        const explains = TestData.locationSaleExplainJ;
         return explains.map(e => {
             return e.text;
         })

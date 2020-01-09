@@ -14,7 +14,9 @@
     </view>
     <view class="main">
         <l-segment
+                activeKey="{{defaultRootId}}"
                 height="{{segHeight}}"
+                bind:linchange="onSegChange"
                 item-height="90"
                 even="{{false}}"
                 width="160"
@@ -22,13 +24,12 @@
                 l-inactive-class="segment-item"
                 l-line-class="l-seg-line"
                 placement="left">
-            <l-segment-item key="1" tab="包包"></l-segment-item>
-            <l-segment-item key="2" tab="工艺"></l-segment-item>
-            <l-segment-item key="3" tab="服装"></l-segment-item>
-            <l-segment-item key="4" tab="鞋子"></l-segment-item>
-            <l-segment-item key="5" tab="饰品"></l-segment-item>
-            <l-segment-item key="6" tab="居家"></l-segment-item>
+            <block wx:for="{{roots}}" wx:key="{{index}}">
+                <l-segment-item key="{{item.id}}" tab="{{item.name}}"></l-segment-item>
+            </block>
         </l-segment>
-        <view></view>
+        <view class="right">
+            <s-sub-category bind:itemTap="onJumpToSpuList" categories="{{currentSubs}}" bannerImg="{{currentBannerImg}}"></s-sub-category>
+        </view>
     </view>
 </view>
