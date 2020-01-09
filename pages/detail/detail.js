@@ -3,6 +3,7 @@ import {Spu} from "../../models/spu";
 import {TestData} from "../../config/testdata";
 import {ShoppingWay} from "../../core/enum";
 import {SaleExplain} from "../../models/sale-explain";
+import {getWindowHeightRpx} from "../../utils/system";
 
 Page({
 
@@ -24,10 +25,14 @@ Page({
         //     spu,
         //     explain
         // })
+        const windowHeight = await getWindowHeightRpx();
+        const h = windowHeight - 100;
+
         const explain = this._initSaleExplain();
         this.setData({
             spu: TestData.locationWithSpu.data[0],
-            explain
+            explain,
+            h
         });
         console.log(TestData.locationSaleExplainG)
     },
